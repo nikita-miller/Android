@@ -186,6 +186,7 @@ public class CalcActivity extends AppCompatActivity {
 
     private void showResult(double arg) {
         String result = String.valueOf(arg);
+        Log.d(CalcActivity.class.getName(), result);
         int maxLength = 10;
         if (result.startsWith("-")) {
             ++maxLength;
@@ -193,6 +194,33 @@ public class CalcActivity extends AppCompatActivity {
         if (result.contains(".")) {
             ++maxLength;
         }
+
+        int exponentIndex = result.indexOf("E");
+        //если индекс больше -1, значит число в экспоненциальной форме
+        if (exponentIndex > -1) {
+            //хранит строку со значением экспоненты
+            String exponentValue = result.substring(exponentIndex);
+            //хранит мантису
+            String mantissaValue = result.substring(2, exponentIndex);
+            //берём цифру до точки и саму точку
+            result = result.substring(0, 1);
+            //если мантиса не "0", то её нужно добавить
+            if (mantissaValue.length() > 1 || !mantissaValue.equals("0")) {
+                result += decimalSign;
+                //количество оставшегося места
+                //2 - цифра до точки и точка
+                int leftoverSpace = maxLength - exponentValue.length() - 2;
+                //если мантиса больше оставшегося места - обрезаем,
+                //иначе - просто добавляем
+                result += mantissaValue.length() > leftoverSpace
+                        ? mantissaValue.substring(0, leftoverSpace)
+                        : mantissaValue;
+            }
+
+            //добавляем значение экспоненты
+            result += exponentValue;
+        }
+
         if (result.length() >= maxLength) {
             result = result.substring(0, maxLength);
         }
