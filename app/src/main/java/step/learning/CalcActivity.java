@@ -84,6 +84,10 @@ public class CalcActivity extends AppCompatActivity {
                 .setOnClickListener(this::inverseClick);
         findViewById(R.id.button_sqrt)
                 .setOnClickListener(this::sqrtClick);
+        findViewById(R.id.button_squared)
+                .setOnClickListener(this::squareClick);
+        findViewById(R.id.button_percent)
+                .setOnClickListener(this::percentClick);
 
         findViewById(R.id.button_clear_entry)
                 .setOnClickListener(this::clearEntryClick);
@@ -285,6 +289,8 @@ public class CalcActivity extends AppCompatActivity {
     private void clearClick(View v) {
         tvHistory.setText("");
         tvResult.setText("0");
+        leftOperand = 0.0;
+        operation = null;
     }
 
     private void fnButtonClick(View v) {
@@ -298,27 +304,70 @@ public class CalcActivity extends AppCompatActivity {
     }
 
     private void equalsClick(View v) {
-        String result = tvResult.getText().toString();
-        double rightOperand = parseResult(result);
-        if (operation.equals(divideSign) && rightOperand == 0) {
-            alert(R.string.division_by_zero);
+        if (operation == null) {
             return;
         }
-
+        String result = tvResult.getText().toString();
+        double rightOperand = parseResult(result);
+        double operationResult;
+        try {
+            operationResult = calculate(leftOperand, rightOperand, operation);
+        } catch (ArithmeticException ignored) {
+            return;
+        }
         String history = tvHistory.getText().toString();
         tvHistory.setText(String.format("%s %s =", history, result));
 
-        if (operation.equals(plusSign)) {
-            showResult(leftOperand + rightOperand);
-        } else if (operation.equals(minusSign)) {
-            showResult(leftOperand - rightOperand);
-        } else if (operation.equals(multiplySign)) {
-            showResult(leftOperand * rightOperand);
-        } else {
-            showResult(leftOperand / rightOperand);
-        }
-
+        showResult(operationResult);
         resultClearNeeded = true;
         historyClearNeeded = true;
+    }
+
+    private void squareClick(View v) {
+        String result = tvResult.getText().toString();
+        double arg = parseResult(result);
+        arg = Math.pow(arg, 2);
+        tvHistory.setText(String.format("(%s)² = ", result));
+        showResult(arg);
+    }
+
+    private void percentClick(View v) {
+        if (operation == null) {
+            return;
+        }
+
+        String result = tvResult.getText().toString();
+        double arg = parseResult(result);
+        double operationResult;
+        try {
+            operationResult = calculate(leftOperand, arg / 100, operation);
+        } catch (ArithmeticException ignored) {
+            return;
+        }
+        tvHistory.setText(String.format(
+                        "%s %s%% =",
+                        tvHistory.getText(),
+                        arg
+                )
+        );
+        showResult(operationResult);
+        historyClearNeeded = true;
+    }
+
+    private double calculate(double leftOperand, double rightOperand, String operation) {
+        if (operation.equals(divideSign) && rightOperand == 0) {
+            alert(R.string.division_by_zero);
+            throw new ArithmeticException();
+        }
+
+        if (operation.equals(plusSign)) {
+            return leftOperand + rightOperand;
+        } else if (operation.equals(minusSign)) {
+            return leftOperand - rightOperand;
+        } else if (operation.equals(multiplySign)) {
+            return leftOperand * rightOperand;
+        } else {
+            return leftOperand / rightOperand;
+        }
     }
 }
