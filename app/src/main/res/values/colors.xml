@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Calc colors -->
+    <color name="calc_layout_bg">#202020</color>
+    <color name="calc_history_text">#AAAAAA</color>
+    <color name="calc_result_text">#FEFEFE</color>
+    <color name="calc_fn_btn_text">#EEEEEE</color>
+    <color name="calc_fn_btn_border">#555555</color>
+    <color name="calc_fn_btn_bg">#323232</color>
+
+    <color name="calc_digit_btn_text">#FAFAFA</color>
+    <color name="calc_digit_btn_border">#595959</color>
+    <color name="calc_digit_btn_bg">#3B3B3B</color>
+
+    <color name="calc_equals_btn_text">#000F26</color>
+    <color name="calc_equals_btn_border">#69CDFF</color>
+    <color name="calc_equals_btn_bg">#4CC2FF</color>
+
+</resources>
