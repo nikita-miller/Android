@@ -34,6 +34,10 @@ public class CalcActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putCharSequence("history", tvHistory.getText());
         outState.putCharSequence("result", tvResult.getText());
+        outState.putBoolean("resultClearNeeded", resultClearNeeded);
+        outState.putBoolean("historyClearNeeded", historyClearNeeded);
+        outState.putDouble("leftOperand", leftOperand);
+        outState.putCharSequence("operation", operation);
         Log.d(CalcActivity.class.getName(), "Data saved");
     }
 
@@ -42,6 +46,13 @@ public class CalcActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         tvHistory.setText(savedInstanceState.getCharSequence("history"));
         tvResult.setText(savedInstanceState.getCharSequence("result"));
+        resultClearNeeded = savedInstanceState.getBoolean("resultClearNeeded");
+        historyClearNeeded = savedInstanceState.getBoolean("historyClearNeeded");
+        leftOperand = savedInstanceState.getDouble("leftOperand");
+        CharSequence csOperation = savedInstanceState.getCharSequence("operation");
+        if (csOperation != null) {
+            operation = csOperation.toString();
+        }
         Log.d(CalcActivity.class.getName(), "Data restored");
     }
 
