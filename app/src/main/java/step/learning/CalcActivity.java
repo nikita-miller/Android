@@ -1,8 +1,5 @@
 package step.learning;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
@@ -16,10 +13,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class CalcActivity extends AppCompatActivity {
     private TextView tvHistory;
     private TextView tvResult;
+    private String plusSign;
     private String minusSign;
+    private String multiplySign;
+    private String divideSign;
     private String decimalSign;
     private boolean resultClearNeeded;
     private boolean historyClearNeeded;
@@ -54,7 +57,10 @@ public class CalcActivity extends AppCompatActivity {
         tvResult = findViewById(R.id.tv_result);
         tvResult.setText("0");
 
+        plusSign = getString(R.string.plus_sign);
         minusSign = getString(R.string.minus_sign);
+        multiplySign = getString(R.string.multiply_sign);
+        divideSign = getString(R.string.divide_sign);
         decimalSign = getString(R.string.decimal_sign);
 
         for (int i = 0; i < 10; ++i) {
@@ -186,7 +192,6 @@ public class CalcActivity extends AppCompatActivity {
 
     private void showResult(double arg) {
         String result = String.valueOf(arg);
-        Log.d(CalcActivity.class.getName(), result);
         int maxLength = 10;
         if (result.startsWith("-")) {
             ++maxLength;
@@ -294,12 +299,25 @@ public class CalcActivity extends AppCompatActivity {
 
     private void equalsClick(View v) {
         String result = tvResult.getText().toString();
+        double rightOperand = parseResult(result);
+        if (operation.equals(divideSign) && rightOperand == 0) {
+            alert(R.string.division_by_zero);
+            return;
+        }
+
         String history = tvHistory.getText().toString();
         tvHistory.setText(String.format("%s %s =", history, result));
-        double rightOperand = parseResult(result);
-        if (operation.equals(getString(R.string.plus_sign))) {
+
+        if (operation.equals(plusSign)) {
             showResult(leftOperand + rightOperand);
+        } else if (operation.equals(minusSign)) {
+            showResult(leftOperand - rightOperand);
+        } else if (operation.equals(multiplySign)) {
+            showResult(leftOperand * rightOperand);
+        } else {
+            showResult(leftOperand / rightOperand);
         }
+
         resultClearNeeded = true;
         historyClearNeeded = true;
     }
