@@ -37,4 +37,7 @@
 
     <string name="division_by_zero">Cannot divide by zero</string>
     <string name="invalid_sqrt">Complex numbers not supported</string>
+
+    <!-- Game Activity -->
+    <string name="btn_game_text">2048</string>
 </resources>
