@@ -24,4 +24,19 @@
     <color name="calc_equals_btn_border">#69CDFF</color>
     <color name="calc_equals_btn_bg">#4CC2FF</color>
 
+    <!-- Game colors -->
+    <color name="game_text_color_light">#FBFAF5</color>
+    <color name="game_text_color_dark">#74675E</color>
+    <color name="game_tile_empty">#C0B0A1</color>
+    <color name="game_tile_2">#EEE4DA</color>
+    <color name="game_tile_4">#EDE0C8</color>
+    <color name="game_tile_8">#F2B179</color>
+    <color name="game_tile_16">#F59563</color>
+    <color name="game_tile_32">#F67C5F</color>
+    <color name="game_tile_64">#F65E3B</color>
+    <color name="game_tile_128">#EDCF72</color>
+    <color name="game_tile_512">#EDC850</color>
+    <color name="game_tile_1024">#EDC53F</color>
+    <color name="game_tile_2048">#EDC22E</color>
+    <color name="game_tile_other">#3C3A32</color>
 </resources>
