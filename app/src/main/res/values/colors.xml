@@ -35,6 +35,7 @@
     <color name="game_tile_32">#F67C5F</color>
     <color name="game_tile_64">#F65E3B</color>
     <color name="game_tile_128">#EDCF72</color>
+    <color name="game_tile_256">#EDCC61</color>
     <color name="game_tile_512">#EDC850</color>
     <color name="game_tile_1024">#EDC53F</color>
     <color name="game_tile_2048">#EDC22E</color>

@@ -91,8 +91,8 @@
     </LinearLayout>
 
     <TableLayout
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:background="#AD9C81"
         android:padding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,49 +107,50 @@
             android:layout_weight="1">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_empty"
-                android:gravity="center"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_00"
+                style="@style/GameTileEmpty"
+                android:text="" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_2"
-                android:gravity="center"
-                android:text="@string/game_tile_2"
-                android:textColor="@color/game_text_color_dark"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_01"
+                style="@style/GameTile2"
+                android:text="@string/game_tile_2" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_4"
-                android:gravity="center"
-                android:text="@string/game_tile_4"
-                android:textColor="@color/game_text_color_dark"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_02"
+                style="@style/GameTile4"
+                android:text="@string/game_tile_4" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_8"
-                android:gravity="center"
-                android:text="@string/game_tile_8"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_03"
+                style="@style/GameTile8"
+                android:text="@string/game_tile_8" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/game_tile_10"
+                style="@style/GameTile16"
+                android:text="@string/game_tile_16" />
+
+            <TextView
+                android:id="@+id/game_tile_11"
+                style="@style/GameTile32"
+                android:text="@string/game_tile_32" />
+
+            <TextView
+                android:id="@+id/game_tile_12"
+                style="@style/GameTile64"
+                android:text="@string/game_tile_64" />
+
+            <TextView
+                android:id="@+id/game_tile_13"
+                style="@style/GameTile128"
+                android:text="@string/game_tile_128" />
 
         </TableRow>
 
@@ -159,52 +160,24 @@
             android:layout_weight="1">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_16"
-                android:gravity="center"
-                android:text="@string/game_tile_16"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_20"
+                style="@style/GameTile128"
+                android:text="@string/game_tile_256" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_32"
-                android:gravity="center"
-                android:text="@string/game_tile_32"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_21"
+                style="@style/GameTile512"
+                android:text="@string/game_tile_512" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_64"
-                android:gravity="center"
-                android:text="@string/game_tile_64"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_22"
+                style="@style/GameTile1024"
+                android:text="@string/game_tile_1024" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_128"
-                android:gravity="center"
-                android:text="@string/game_tile_128"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_23"
+                style="@style/GameTile2048"
+                android:text="@string/game_tile_2048" />
 
         </TableRow>
 
@@ -214,101 +187,24 @@
             android:layout_weight="1">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="#EDCC61"
-                android:gravity="center"
-                android:text="@string/game_tile_256"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_30"
+                style="@style/GameTile4096"
+                android:text="@string/game_tile_4096" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_512"
-                android:gravity="center"
-                android:text="@string/game_tile_512"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_31"
+                style="@style/GameTile8192"
+                android:text="@string/game_tile_8192" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_1024"
-                android:gravity="center"
-                android:text="@string/game_tile_1024"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_32"
+                style="@style/GameTileEmpty"
+                android:text="" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_2048"
-                android:gravity="center"
-                android:text="@string/game_tile_2048"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_other"
-                android:gravity="center"
-                android:text="@string/game_tile_4096"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_other"
-                android:gravity="center"
-                android:text="@string/game_tile_8192"
-                android:textColor="@color/game_text_color_light"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_empty"
-                android:gravity="center"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="6dp"
-                android:layout_weight="1"
-                android:background="@color/game_tile_empty"
-                android:gravity="center"
-                android:textStyle="bold" />
+                android:id="@+id/game_tile_33"
+                style="@style/GameTileEmpty"
+                android:text="" />
 
         </TableRow>
 
