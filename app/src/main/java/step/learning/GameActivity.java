@@ -1,7 +1,6 @@
 package step.learning;
 
-//import android.app.AlertDialog;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -35,6 +34,7 @@ public class GameActivity extends AppCompatActivity {
     private final String bestScoreFilename = "best_score.txt";
     private boolean isFreeMode;
 
+    @SuppressLint("DiscouragedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +97,14 @@ public class GameActivity extends AppCompatActivity {
 
                     @Override
                     public void onSwipeTop() {
+                        if (moveUp()) {
+                            spawnTile();
+                            return;
+                        }
                         Toast
                                 .makeText(
                                         GameActivity.this,
-                                        "Top",
+                                        "Can't move up",
                                         Toast.LENGTH_SHORT
                                 )
                                 .show();
@@ -108,10 +112,14 @@ public class GameActivity extends AppCompatActivity {
 
                     @Override
                     public void onSwipeBottom() {
+                        if (moveDown()) {
+                            spawnTile();
+                            return;
+                        }
                         Toast
                                 .makeText(
                                         GameActivity.this,
-                                        "Bottom",
+                                        "Can't move down",
                                         Toast.LENGTH_SHORT
                                 )
                                 .show();
@@ -122,7 +130,7 @@ public class GameActivity extends AppCompatActivity {
         spawnTile();
     }
 
-    private boolean saveBestScore() {
+    private void saveBestScore() {
         try (FileOutputStream fos = openFileOutput(bestScoreFilename, Context.MODE_PRIVATE)) {
             DataOutputStream writer = new DataOutputStream(fos);
             writer.writeInt(bestScore);
@@ -130,10 +138,8 @@ public class GameActivity extends AppCompatActivity {
             writer.close();
         } catch (IOException ex) {
             Log.d("saveBestScore", ex.getMessage());
-            return false;
         }
 
-        return true;
     }
 
     private int loadBestScore() {
@@ -214,6 +220,7 @@ public class GameActivity extends AppCompatActivity {
             }
     }
 
+    @SuppressLint("DiscouragedApi")
     private void showField() {
         if (isGameOver()) {
             showGameOverDialog();
@@ -258,7 +265,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private boolean spawnTile() {
+    private void spawnTile() {
         List<Integer> emptyTileIndexes = new ArrayList<>();
         for (int i = 0; i < 4; ++i)
             for (int j = 0; j < 4; ++j) {
@@ -269,7 +276,7 @@ public class GameActivity extends AppCompatActivity {
 
         int count = emptyTileIndexes.size();
         if (count == 0) {
-            return false;
+            return;
         }
 
         int randIndex = random.nextInt(count);
@@ -278,7 +285,6 @@ public class GameActivity extends AppCompatActivity {
         tiles[x][y] = random.nextInt(10) < 9 ? 2 : 4;
         tvTiles[x][y].startAnimation(spawnTileAnimation);
         showField();
-        return true;
     }
 
     private boolean moveLeft() {
@@ -360,6 +366,92 @@ public class GameActivity extends AppCompatActivity {
                     tiles[i][0] = 0;
                     result = true;
                     score += tiles[i][j];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private boolean moveUp() {
+        boolean result = false;
+        boolean needRepeat;
+        boolean isTileEmpty;
+        boolean tilesEqual;
+
+        for (int i = 0; i < 4; ++i) {
+            do {
+                needRepeat = false;
+                for (int j = 0; j < 3; ++j) {
+                    isTileEmpty = tiles[j][i] == 0;
+                    if (isTileEmpty) {
+                        for (int k = j + 1; k < 4; ++k) {
+                            if (tiles[k][i] > 0) {
+                                tiles[j][i] = tiles[k][i];
+                                tiles[k][i] = 0;
+                                needRepeat = true;
+                                result = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            } while (needRepeat);
+
+            for (int j = 0; j < 3; ++j) {
+                isTileEmpty = tiles[j][i] == 0;
+                tilesEqual = tiles[j][i] == tiles[j + 1][i];
+                if (!isTileEmpty && tilesEqual) {
+                    tiles[j][i] *= 2;
+                    for (int k = j + 1; k < 3; ++k) {
+                        tiles[k][i] = tiles[k + 1][i];
+                    }
+                    tiles[3][i] = 0;
+                    result = true;
+                    score += tiles[j][i];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private boolean moveDown() {
+        boolean result = false;
+        boolean needRepeat;
+        boolean isTileEmpty;
+        boolean tilesEqual;
+
+        for (int i = 0; i < 4; ++i) {
+            do {
+                needRepeat = false;
+                for (int j = 3; j > 0; --j) {
+                    isTileEmpty = tiles[j][i] == 0;
+                    if (isTileEmpty) {
+                        for (int k = j - 1; k >= 0; --k) {
+                            if (tiles[k][i] > 0) {
+                                tiles[j][i] = tiles[k][i];
+                                tiles[k][i] = 0;
+                                needRepeat = true;
+                                result = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            } while (needRepeat);
+
+            for (int j = 3; j > 0; --j) {
+                isTileEmpty = tiles[j][i] == 0;
+                tilesEqual = tiles[j][i] == tiles[j - 1][i];
+                if (!isTileEmpty && tilesEqual) {
+                    tiles[j][i] *= 2;
+                    for (int k = j - 1; k > 0; --k) {
+                        tiles[k][i] = tiles[k - 1][i];
+                    }
+                    tiles[0][i] = 0;
+                    result = true;
+                    score += tiles[j][i];
                 }
             }
         }
