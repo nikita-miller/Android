@@ -159,7 +159,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean isWin() {
         for (int i = 0; i < 4; ++i)
             for (int j = 0; j < 4; ++j) {
-                if (tiles[i][j] == 2048) {
+                if (tiles[i][j] == 32) {
                     return true;
                 }
             }
@@ -168,9 +168,50 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private boolean isGameOver() {
+        int current;
+        int leftNeighbor;
+        int rightNeighbor;
+        int topNeighbor;
+        int bottomNeighbor;
+
+        // пробег по всему полю в поисках пустых ячеек или возможных слияний
+        // каждая ячейка проверяется на возможность слияния с одной из соседних
         for (int i = 0; i < 4; ++i)
             for (int j = 0; j < 4; ++j) {
                 if (tiles[i][j] == 0) {
+                    return false;
+                }
+
+                try {
+                    leftNeighbor = tiles[i][j - 1];
+                } catch (Exception ignored) {
+                    leftNeighbor = -1;
+                }
+
+                try {
+                    rightNeighbor = tiles[i][j + 1];
+                } catch (Exception ignored) {
+                    rightNeighbor = -1;
+                }
+
+                try {
+                    topNeighbor = tiles[i - 1][j];
+                } catch (Exception ignored) {
+                    topNeighbor = -1;
+                }
+
+                try {
+                    bottomNeighbor = tiles[i + 1][j];
+                } catch (Exception ignored) {
+                    bottomNeighbor = -1;
+                }
+
+                current = tiles[i][j];
+
+                if (current == leftNeighbor
+                        || current == rightNeighbor
+                        || current == topNeighbor
+                        || current == bottomNeighbor) {
                     return false;
                 }
             }
