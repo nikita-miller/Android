@@ -4,7 +4,7 @@
     <!-- Main Activity -->
     <string name="tv_hello_content">Android Basics</string>
     <string name="btn_calc_text">Calculator</string>
-    <string name="btn_exit_text">Exit</string>
+    <string name="btn_exit">Exit</string>
 
     <!-- Calc Activity -->
     <string name="plus_sign">+</string>
@@ -55,8 +55,15 @@
     <string name="game_tile_8192">8192</string>
     <string name="game_tile_16184">16184</string>
     <string name="game_tile_32368">32368</string>
-    <string name="btn_new_text">NEW</string>
-    <string name="btn_undo_text">UNDO</string>
-    <string name="current_score">SCORE\n69.6k</string>
-    <string name="best_score">BEST\n69.6k</string>
+    <string name="game_btn_new_text">NEW</string>
+    <string name="game_btn_undo_text">UNDO</string>
+    <string name="game_score_pattern">SCORE\n%d</string>
+    <string name="game_best_score_pattern">BEST\n%d</string>
+    <string name="game_victory_title">Win</string>
+    <string name="game_victory_message">You gathered 2048</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_new_game">New Game</string>
+    <string name="in_development">In development</string>
+    <string name="game_over_title">Game Over</string>
+    <string name="game_over_message">You lost</string>
 </resources>
