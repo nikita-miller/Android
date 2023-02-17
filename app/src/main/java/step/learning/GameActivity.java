@@ -159,7 +159,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean isWin() {
         for (int i = 0; i < 4; ++i)
             for (int j = 0; j < 4; ++j) {
-                if (tiles[i][j] == 32) {
+                if (tiles[i][j] == 2048) {
                     return true;
                 }
             }

@@ -7,29 +7,29 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_hello"
+        android:id="@+id/tv_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_hello_content"
+        android:text="@string/tv_main_title"
         android:textAllCaps="false"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.025" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="100dp"
+        android:layout_marginHorizontal="50dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hello">
+        app:layout_constraintTop_toBottomOf="@+id/tv_main_title">
 
         <Button
             android:id="@+id/calc_button"
@@ -43,6 +43,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="@string/game_title" />
+
+        <Button
+            android:id="@+id/rates_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/btn_rates_text" />
 
         <Button
             android:id="@+id/exit_button"

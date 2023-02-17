@@ -2,8 +2,9 @@
     <string name="app_name">Basics</string>
 
     <!-- Main Activity -->
-    <string name="tv_hello_content">Android Basics</string>
+    <string name="tv_main_title">Android Basics</string>
     <string name="btn_calc_text">Calculator</string>
+    <string name="btn_rates_text">Currency rates</string>
     <string name="btn_exit">Exit</string>
 
     <!-- Calc Activity -->
@@ -66,4 +67,7 @@
     <string name="in_development">In development</string>
     <string name="game_over_title">Game Over</string>
     <string name="game_over_message">You lost</string>
+
+    <!-- Rates Activity -->
+    <string name="tv_rates_title">Currency rates</string>
 </resources>

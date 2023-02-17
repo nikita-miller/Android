@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
                 .setOnClickListener(this::btnCalcClick);
         findViewById(R.id.game_button)
                 .setOnClickListener(this::btnGameClick);
+        findViewById(R.id.rates_button)
+                .setOnClickListener(this::btnRatesClick);
         findViewById(R.id.exit_button)
                 .setOnClickListener(this::btnExitClick);
     }
@@ -35,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
                 GameActivity.class
         );
         startActivity(gameIntent);
+    }
+
+    private void btnRatesClick(View v) {
+        Intent ratesIntent = new Intent(
+                MainActivity.this,
+                RatesActivity.class
+        );
+        startActivity(ratesIntent);
     }
 
     private void btnExitClick(View v) {
