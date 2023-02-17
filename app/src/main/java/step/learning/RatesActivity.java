@@ -77,6 +77,26 @@ public class RatesActivity extends AppCompatActivity {
 
     private void showContent() {
         StringBuilder sb = new StringBuilder();
+        int length = rates.size();
+        sb.append(rates.get(0).getExchangeDate());
+        sb.append("\n");
+        sb.append("\n");
+
+        Rate currentRate;
+        for (int i = 0; i < length; ++i) {
+            currentRate = rates.get(i);
+            sb.append(currentRate.getR030());
+            sb.append("\n");
+            sb.append(currentRate.getTxt());
+            sb.append("\n");
+            sb.append(currentRate.getRate());
+            sb.append("\n");
+            sb.append(currentRate.getCc());
+            sb.append("\n");
+            sb.append("\n");
+        }
+
+        content = sb.toString();
         tvContent.setText(content);
     }
 
@@ -89,7 +109,7 @@ public class RatesActivity extends AppCompatActivity {
 
         public Rate(JSONObject object) throws JSONException {
             setR030(object.getInt("r030"));
-            setTxt(object.getString("text"));
+            setTxt(object.getString("txt"));
             setRate(object.getDouble("rate"));
             setCc(object.getString("cc"));
             setExchangeDate(object.getString("exchangedate"));
