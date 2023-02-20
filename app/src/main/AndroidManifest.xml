@@ -12,23 +12,25 @@
         android:theme="@style/Theme.Basics"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
-
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RatesActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".GameActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked" />
-
         <activity
             android:name=".CalcActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -38,7 +40,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

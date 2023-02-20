@@ -5,6 +5,7 @@
     <string name="tv_main_title">Android Basics</string>
     <string name="btn_calc_text">Calculator</string>
     <string name="btn_rates_text">Currency rates</string>
+    <string name="btn_chat_text">Chat</string>
     <string name="btn_exit">Exit</string>
 
     <!-- Calc Activity -->
@@ -70,4 +71,13 @@
 
     <!-- Rates Activity -->
     <string name="tv_rates_title">Currency rates</string>
+    <string name="nbu_api_url">https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json</string>
+
+    <!-- Chat Activity -->
+    <string name="chat_api_url">https://diorama-chat.ew.r.appspot.com/story</string>
+    <string name="chat_user_name_title">Name:</string>
+    <string name="chat_default_user">anon</string>
+    <string name="chat_message_title">Msg:</string>
+    <string name="chat_default_message">КУ</string>
+    <string name="btn_send_message">Send</string>
 </resources>

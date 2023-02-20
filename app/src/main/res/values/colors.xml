@@ -40,4 +40,9 @@
     <color name="game_tile_1024">#EDC53F</color>
     <color name="game_tile_2048">#EDC22E</color>
     <color name="game_tile_other">#3C3A32</color>
+
+    <!-- Rates colors -->
+    <color name="rate_left_bg_color">#FFDCDC</color>
+    <color name="rate_right_bg_color">#A894DF</color>
+    <color name="chat_frame_border">#8DACEA</color>
 </resources>

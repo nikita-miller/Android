@@ -1,11 +1,15 @@
 package step.learning;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RatesActivity extends AppCompatActivity {
-    private final String nbuApiUrl = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
+    private String nbuApiUrl;
     private TextView tvContent;
     private String content;
     private List<Rate> rates;
@@ -31,6 +35,7 @@ public class RatesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rates);
 
         tvContent = findViewById(R.id.tv_rates_content);
+        nbuApiUrl = getString(R.string.nbu_api_url);
 
         new Thread(this::loadUrl).start();
     }
@@ -75,7 +80,7 @@ public class RatesActivity extends AppCompatActivity {
         runOnUiThread(this::showContent);
     }
 
-    private void showContent() {
+    private void showContentTxt() {
         StringBuilder sb = new StringBuilder();
         int length = rates.size();
         sb.append(rates.get(0).getExchangeDate());
@@ -100,12 +105,56 @@ public class RatesActivity extends AppCompatActivity {
         tvContent.setText(content);
     }
 
+    private void showContent() {
+        LinearLayout ratesContainer = findViewById(R.id.rates_container);
+
+        Drawable rateLeftBg = AppCompatResources.getDrawable(
+                getApplicationContext(),
+                R.drawable.rates_left_shape
+        );
+
+        Drawable rateRightBg = AppCompatResources.getDrawable(
+                getApplicationContext(),
+                R.drawable.rates_right_shape
+        );
+
+        LinearLayout.LayoutParams rateLeftLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        rateLeftLayoutParams.setMargins(10, 7, 10, 7);
+
+        LinearLayout.LayoutParams rateRightLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        rateRightLayoutParams.setMargins(10, 7, 10, 7);
+        rateRightLayoutParams.gravity = Gravity.END;
+
+        TextView tvItem;
+        boolean flag = false;
+        for (Rate rate : this.rates) {
+            tvItem = new TextView(this);
+            tvItem.setText(rate.toTvString());
+            flag = !flag;
+            tvItem.setGravity(flag ? Gravity.START : Gravity.END);
+            tvItem.setBackground(flag ? rateLeftBg : rateRightBg);
+            tvItem.setPadding(15, 5, 15, 5);
+            tvItem.setLayoutParams(flag ? rateLeftLayoutParams : rateRightLayoutParams);
+            ratesContainer.addView(tvItem);
+        }
+    }
+
     static class Rate {
         private int r030;
         private String txt;
         private double rate;
         private String cc;
         private String exchangeDate;
+
+        public String toTvString() {
+            return String.format("%s%n%s\t%s", getTxt(), getCc(), getRate());
+        }
 
         public Rate(JSONObject object) throws JSONException {
             setR030(object.getInt("r030"));
