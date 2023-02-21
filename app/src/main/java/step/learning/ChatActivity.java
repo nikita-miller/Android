@@ -1,7 +1,9 @@
 package step.learning;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +41,12 @@ public class ChatActivity extends AppCompatActivity {
     private EditText etUserName;
     private EditText etUserMessage;
     private ChatMessage userMessage;
+
+    private static final SimpleDateFormat scanFormat =
+            new SimpleDateFormat(
+                    "MMM d, yyyy h:mm:ss a",
+                    Locale.US
+            );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,22 +173,57 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void showChatMessages() {
-        TextView tvMessage = new TextView(this);
-        StringBuilder sb = new StringBuilder();
+        Drawable otherBg = AppCompatResources.getDrawable(
+                getApplicationContext(),
+                R.drawable.rates_left_shape
+        );
+        Drawable myBg = AppCompatResources.getDrawable(
+                getApplicationContext(),
+                R.drawable.rates_right_shape
+        );
+
+        LinearLayout.LayoutParams otherLayoutParams =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+        otherLayoutParams.setMargins(10, 7, 10, 7);
+
+        LinearLayout.LayoutParams myLayoutParams =
+                new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+        myLayoutParams.setMargins(10, 7, 10, 7);
+        myLayoutParams.gravity = Gravity.END;
+
+        TextView tvMessage;
+        boolean isMyMessage;
+        String author;
         for (ChatMessage chatMessage : chatMessages) {
-            sb.append(
-                    String.format(
-                            "%s: %s - %s%n",
-                            chatMessage.getMoment(),
-                            chatMessage.getAuthor(),
-                            chatMessage.getTxt()
-                    )
+            tvMessage = new TextView(this);
+            author = chatMessage.getAuthor();
+            isMyMessage = author.equals(etUserName.getText().toString());
+            tvMessage.setText(String.format(
+                    "%s:%n%s - %s",
+                    scanFormat.format(chatMessage.getMoment()),
+                    author,
+                    chatMessage.getTxt())
             );
+            tvMessage.setBackground(
+                    isMyMessage
+                            ? myBg
+                            : otherBg
+            );
+            tvMessage.setLayoutParams(
+                    isMyMessage
+                            ? myLayoutParams
+                            : otherLayoutParams
+            );
+            tvMessage.setTextSize(16);
+            tvMessage.setPadding(10, 5, 10, 5);
+            chatContainer.addView(tvMessage);
         }
-        tvMessage.setText(sb.toString());
-        tvMessage.setTextSize(16);
-        tvMessage.setPadding(10, 5, 10, 5);
-        chatContainer.addView(tvMessage);
     }
 
     private static class ChatMessage {
@@ -196,7 +240,6 @@ public class ChatActivity extends AppCompatActivity {
                 );
 
         public ChatMessage() {
-
         }
 
         public ChatMessage(JSONObject object) throws JSONException {
