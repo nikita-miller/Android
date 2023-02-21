@@ -78,6 +78,6 @@
     <string name="chat_user_name_title">Name:</string>
     <string name="chat_default_user">anon</string>
     <string name="chat_message_title">Msg:</string>
-    <string name="chat_default_message">КУ</string>
+    <string name="chat_default_message">Hello</string>
     <string name="btn_send_message">Send</string>
 </resources>
