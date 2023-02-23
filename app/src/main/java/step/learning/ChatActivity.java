@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class ChatActivity extends AppCompatActivity {
     private EditText etUserName;
     private EditText etUserMessage;
     private ChatMessage userMessage;
+    private ScrollView svChatMessages;
 
     private static final SimpleDateFormat scanFormat =
             new SimpleDateFormat(
@@ -61,6 +63,7 @@ public class ChatActivity extends AppCompatActivity {
         chatContainer = findViewById(R.id.chat_container);
         etUserName = findViewById(R.id.et_user_name);
         etUserMessage = findViewById(R.id.et_user_message);
+        svChatMessages = findViewById(R.id.sv_chat_messages);
 
         findViewById(R.id.btn_chat_send)
                 .setOnClickListener(this::sendButtonClick);
@@ -226,6 +229,13 @@ public class ChatActivity extends AppCompatActivity {
             tvMessage.setPadding(10, 5, 10, 5);
             chatContainer.addView(tvMessage);
         }
+
+        // после того как добавлены все TextView происходит скролл вниз
+        // метод post отправляет runnable object в очередь сообщений приложения
+        // и выполняет его в UI потоке
+        svChatMessages.post(
+                () -> svChatMessages.fullScroll(ScrollView.FOCUS_DOWN)
+        );
     }
 
     private static class ChatMessage {
