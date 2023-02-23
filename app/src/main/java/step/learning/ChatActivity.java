@@ -28,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -162,6 +163,7 @@ public class ChatActivity extends AppCompatActivity {
                             )
                     );
                 }
+                Collections.reverse(chatMessages);
                 runOnUiThread(this::showChatMessages);
             }
         } catch (JSONException ex) {
