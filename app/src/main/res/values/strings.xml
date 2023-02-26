@@ -74,10 +74,13 @@
     <string name="nbu_api_url">https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json</string>
 
     <!-- Chat Activity -->
-    <string name="chat_api_url">https://diorama-chat.ew.r.appspot.com/story</string>
+    <string name="chat_api_url">https://express-messages-api.onrender.com</string>
     <string name="chat_user_name_title">Name:</string>
     <string name="chat_default_user">anon</string>
     <string name="chat_message_title">Msg:</string>
     <string name="chat_default_message">Hello</string>
     <string name="btn_send_message">Send</string>
+    <string name="channel_name">Chat</string>
+    <string name="channel_description">Chat Notification Channel</string>
+    <string name="channel_id">CHAT_NOTIFY</string>
 </resources>
